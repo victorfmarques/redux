@@ -1,28 +1,23 @@
-import { createStore } from 'redux';
+import { createSlice, configureStore } from '@reduxjs/toolkit';
 
-const intialState = { counter: 0, showCounter: true }
+const initialState = { counter: 0, showCounter: true }
 
-const changeCounterReducer = (state = intialState, action) => {
-    if (action.type === 'increment') {
-        return { counter: state.counter + 1, showCounter: state.showCounter }
+// provides all previous reducers, but now on a cleaner and more scalable way
+const counterSlice = createSlice({
+    name: 'counter',
+    initialState: initialState,
+    reducers: {
+        increment(state) { state.counter++; },
+        decrement(state) { state.counter--; },
+        increase(state, action) { state.counter = state.counter + action.amount },
+        toggleCounter(state) { state.showCounter = !state.showCounter },
     }
+});
 
-    if (action.type === 'increase') {
-        // expects amount to be sent on dispatch method
-        return { counter: state.counter + action.amount, showCounter: state.showCounter }
-    }
-
-    if (action.type === 'decrement') {
-        return { counter: state.counter - 1, showCounter: state.showCounter }
-    }
-
-    if (action.type === 'toggle') {
-        return { showCounter: !state.showCounter, counter: state.counter }
-    }
-
-    return state
-}
-
-const store = createStore(changeCounterReducer);
+// sets store with configureStore method, making it possible to export
+// multiple slices reducers
+const store = configureStore({
+    reducer: counterSlice.reducer
+});
 
 export default store;
