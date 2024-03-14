@@ -3,7 +3,7 @@
 
 // import for function components
 import { useSelector, useDispatch } from 'react-redux';
-import { counterActions } from '../store/index'
+import { counterActions } from '../store/counterSlice'
 
 import classes from './Counter.module.css';
 
@@ -12,7 +12,7 @@ const Counter = () => {
   // provides function to trigger reducer actions 
   const dispatch = useDispatch();
   // consuming store state provided by Provider component set in App.js
-  const { counter, showCounter } = useSelector(state => state);
+  const { counter, showCounter } = useSelector(state => state.counter);
 
 
   const incrementHandler = () => {
