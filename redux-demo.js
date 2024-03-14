@@ -5,9 +5,21 @@ const redux = require('redux');
 // - always have a state and action as parameters
 // - always return a state object
 const counterReducer = (state = { counter: 0 }, action) => {
-    return {
-        counter: state.counter + 1
+
+    // validating action.type parameter sent by the dispatcher
+    if (action.type === 'increment') {
+        return {
+            counter: state.counter + 1
+        }
     }
+
+    if (action.type === 'decrement') {
+        return {
+            counter: state.counter - 1
+        }
+    }
+
+    return state;
 };
 
 // Creates store with the reducer function
@@ -28,5 +40,6 @@ store.subscribe(counterSubscriber);
 
 // Triggers counterReducer function
 store.dispatch({ type: 'increment' });
-
 store.dispatch({ type: 'increment' });
+store.dispatch({ type: 'non-related-type' });
+store.dispatch({ type: 'decrement' });
