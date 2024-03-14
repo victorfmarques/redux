@@ -1,17 +1,23 @@
 import { createStore } from 'redux';
 
-const changeCounterReducer = (state = { counter: 0 }, action) => {
+const intialState = { counter: 0, showCounter: true }
+
+const changeCounterReducer = (state = intialState, action) => {
     if (action.type === 'increment') {
-        return { counter: state.counter + 1 }
+        return { counter: state.counter + 1, showCounter: state.showCounter }
     }
 
     if (action.type === 'increase') {
         // expects amount to be sent on dispatch method
-        return { counter: state.counter + action.amount }
+        return { counter: state.counter + action.amount, showCounter: state.showCounter }
     }
 
     if (action.type === 'decrement') {
-        return { counter: state.counter - 1 }
+        return { counter: state.counter - 1, showCounter: state.showCounter }
+    }
+
+    if (action.type === 'toggle') {
+        return { showCounter: !state.showCounter, counter: state.counter }
     }
 
     return state
