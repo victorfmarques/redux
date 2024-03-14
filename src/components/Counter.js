@@ -3,6 +3,7 @@
 
 // import for function components
 import { useSelector, useDispatch } from 'react-redux';
+import { counterActions } from '../store/index'
 
 import classes from './Counter.module.css';
 
@@ -13,11 +14,22 @@ const Counter = () => {
   // consuming store state provided by Provider component set in App.js
   const { counter, showCounter } = useSelector(state => state);
 
-  // increment and decrement button functions dispatching its respective functionabilities
-  const incrementHandler = () => { dispatch({ type: 'increment' }); }
-  const decrementHandler = () => { dispatch({ type: 'decrement' }); }
-  const increaseBy5Handler = () => { dispatch({ type: 'increase', amount: 5 }); }
-  const toggleCounterHandler = () => { dispatch({ type: 'toggle' }) };
+
+  const incrementHandler = () => {
+    dispatch(counterActions.increment());
+  };
+
+  const decrementHandler = () => {
+    dispatch(counterActions.decrement());
+  };
+
+  const increaseBy5Handler = () => {
+    dispatch(counterActions.increase(5));
+  };
+
+  const toggleCounterHandler = () => {
+    dispatch(counterActions.toggleCounter());
+  };
 
   return (
     <main className={classes.counter}>
