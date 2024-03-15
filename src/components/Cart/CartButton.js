@@ -7,7 +7,7 @@ const CartButton = (props) => {
   const dispatch = useDispatch();
 
   const handleToggleCart = () => {
-    dispatch(uiActions.toggleShowCart())
+    dispatch(uiActions.togglecartIsVisible())
   }
 
 

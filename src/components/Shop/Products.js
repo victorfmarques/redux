@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux';
 import ProductItem from './ProductItem';
 import classes from './Products.module.css';
 
