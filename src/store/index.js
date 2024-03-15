@@ -1,17 +1,16 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
 
-import counterReducer from './counterSlice';
-import authReducer from './authSlice';
+import cartSliceReducers from "./cartSlice";
+import uiSliceReducers from "./uiSlice";
 
 
-// sets store with configureStore method, making it possible to export
-// multiple slices reducers
-const store = configureStore({
-    reducer: {
-        counter: counterReducer,
-        auth: authReducer,
+const store = configureStore(
+    {
+        reducer: {
+            cart: cartSliceReducers,
+            ui: uiSliceReducers
+        }
     }
-});
-
+)
 
 export default store;
